@@ -3,6 +3,9 @@ function showStructure(structure){
     $('#' + structure.id + '-name').text(structure.name);
     $('#' + structure.id + '-price').text(priceToString(structure.price));
     $('#' + structure.id + '-count').text(structure.count);
+    if(structure.hasOwnProperty('requires')) {
+        structure.requires() ? $('#' + structure.id + '-row').show() : $('#' + structure.id + '-row').hide();
+    }
 }
 var Tent = {
     name: 'Tent',
@@ -49,6 +52,9 @@ var Church = {
         food: 100,
     },
     count: 0,
+    requires: function(){
+        return Game.structures.stockpile.count >= 4;
+    }
 };
 
 
