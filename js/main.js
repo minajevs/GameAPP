@@ -7,7 +7,7 @@ function rosebud(){ //cheatz
 }
 
 var Game = {
-    version: '0.2',
+    version: '0.4',
     secondsSpent: 0, //total time spent in game
     autoSave: 10,
     magic: 1.15,    //constant incement value
