@@ -1,0 +1,129 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+    </head>
+    <body>
+        <hr>
+        <h1>Incremental XYZ</h1>
+        <!-- First row -->
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-hover table-condensed table-bordered">
+                    <thead>
+                        <h3>Resources:</h3>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="col-md-1"><div class="btn btn-success btn-sm" id="collect-coin"><span class="glyphicon glyphicon-usd"></span> Coin</div></td>
+                        <td class="col-md-3">Coins:</td>
+                        <td class="col-md-4"><span id="coins-count">0</span> / <span id="coins-storage">0</span></td>
+                        <td class="col-md-3">( <span id="coins-ps">0</span> p/s )</td>
+                    </tr>
+                    <tr>
+                        <td><div class="btn btn-success btn-sm" id="collect-wood"><span class="glyphicon glyphicon-tree-deciduous"></span> Wood</div></td>
+                        <td>Wood: </td>
+                        <td><span id="wood-count">0</span> / <span id="wood-storage">0</span></td>
+                        <td>( <span id="wood-ps">0</span> p/s )</td>
+                    </tr>
+                    <tr>
+                        <td><div class="btn btn-success btn-sm" id="collect-stone"><span class="glyphicon glyphicon-globe"></span> Stone</div></td>
+                        <td>Stone: </td>
+                        <td><span id="stone-count">0</span> / <span id="stone-storage">0</span></td>
+                        <td>( <span id="stone-ps">0</span> p/s )</td>
+                    </tr>
+                    <tr>
+                        <td><div class="btn btn-success btn-sm" id="collect-iron"><span class="glyphicon glyphicon-wrench"></span> Iron</div></td>
+                        <td>Iron: </td>
+                        <td><span id="iron-count">0</span> / <span id="iron-storage">0</span></td>
+                        <td>( <span id="iron-ps">0</span> p/s )</td>
+                    </tr>
+                    <tr>
+                        <td><div class="btn btn-success btn-sm" id="collect-food"><span class="glyphicon glyphicon-apple"></span> Food</div></td>
+                        <td>Food: </td>
+                        <td><span id="food-count">0</span> / <span id="food-storage">0</span></td>
+                        <td>( <span id="food-ps">0</span> p/s )</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-hover table-condensed table-bordered">
+                    <thead>
+                        <h3>Stats:</h3>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Population:</td>
+                            <td><span id="population"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Total time spent:</td>
+                            <td><span id="timespent"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Save game:</td>
+                            <td><div class="btn btn-success btn-sm" id="save-game"><span class="glyphicon glyphicon-apple"></span> Save</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Second row -->
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-hover table-condensed table-bordered" id="entity-table">
+                    <thead>
+                        <h3>People:</h3>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Name:</th>
+                            <th>Price:</th>
+                            <th>Count:</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-hover table-condensed table-bordered" id="structures-table">
+                    <thead>
+                        <h3>Structures:</h3>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th></th>
+                        <th>Building:</th>
+                        <th>Price:</th>
+                        <th>Count:</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="js/vendor/jquery-1.11.2.min.js"></script>
+
+        <script src="js/savegame.js"></script>
+        <script src="js/entities.js"></script>
+        <script src="js/resources.js"></script>
+        <script src="js/structures.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/firstlaunch.js"></script>
+    </body>
+</html>
