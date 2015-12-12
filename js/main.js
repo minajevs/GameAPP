@@ -7,7 +7,7 @@ function rosebud(){ //cheatz
 }
 
 var Game = {
-    version: '0.1',
+    version: '0.2',
     secondsSpent: 0, //total time spent in game
     autoSave: 10,
     magic: 1.15,    //constant incement value
@@ -133,18 +133,18 @@ Game.updateScreen(); //and update the screen in case values changed
 $('#collect-coin').on('click', function () { //collect resource handles
     collectResource(Game.resources.coins);
 });
-$('#collect-wood').on('click', function () {
-    collectResource(Game.resources.wood);
-});
-$('#collect-stone').on('click', function () {
-    collectResource(Game.resources.stone);
-});
-$('#collect-iron').on('click', function () {
-    collectResource(Game.resources.iron);
-});
-$('#collect-food').on('click', function () {
-    collectResource(Game.resources.food);
-});
+//$('#collect-wood').on('click', function () {
+//    collectResource(Game.resources.wood);
+//});
+//$('#collect-stone').on('click', function () {
+//    collectResource(Game.resources.stone);
+//});
+//$('#collect-iron').on('click', function () {
+//    collectResource(Game.resources.iron);
+//});
+//$('#collect-food').on('click', function () {
+//    collectResource(Game.resources.food);
+//});
 
 // The Main Loop!
 // Occurs every 1000ms (1sec), calls Game.tick(), .updateGame() and .updateScreen()

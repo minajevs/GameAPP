@@ -133,6 +133,165 @@ textarea {
     *zoom: 1;
 }
 
+body {
+    background-image: url("../Untitled.png");
+    background-size: cover;
+}
+
+
+.table tr th,
+.table tr td {
+    background-color: rgba(245,222,179,0.8);
+}
+
+.table tbody tr:first-of-type th:first-of-type {
+    border-radius: 10px 0px 0px 0px;
+}
+
+.table tbody tr:first-of-type th:last-of-type {
+    border-radius: 0px 10px 0px 0px;
+}
+
+.table tbody tr:last-of-type td:last-of-type {
+    border-radius: 0px 0px 10px 0px;
+}
+
+.table tbody tr:last-of-type td:first-of-type {
+    border-radius: 0px 0px 0px 10px;
+}
+
+.table.no-border tr th,
+.table.no-border tr td {
+    border: none;
+}
+
+.resources {
+    background-color: rgba(245,222,179,0.8);
+    display: inline-block;
+}
+.resources ul {
+    list-style-type: none;
+    float: right;
+}
+
+.resources ul li {
+    display: inline-block;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.resources ul li span {
+    display: inline-block;
+    position: relative;
+}
+
+.numbers {
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 5px;
+    min-width: 120px;
+    text-align: center;
+}
+
+.numbers-pop {
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 5px;
+    min-width: 60px;
+    text-align: center;
+}
+
+.resources1 {
+    display: none;
+}
+
+.stats {
+    display: none;
+}
+
+.container h3 {
+    font-weight: 900;
+}
+
+.structures {
+    margin-top: -50px;
+}
+
+h1 {
+    font-size: 70px;
+    font-weight: 900;
+    color: #51452a;
+}
+
+h3 {
+    color: wheat;
+}
+
+.title {
+    text-align: center;
+}
+
+/*==========  Desktop First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+    .structures {
+        margin-top: 0px;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+    h1 {
+        font-size: 40px;
+        font-weight: 900;
+        color: #51452a;
+    }
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+
+}
+
+
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
 /* ==========================================================================
    Print styles
    ========================================================================== */

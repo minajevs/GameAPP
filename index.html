@@ -8,8 +8,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="css/normalize.min.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
 
         <!--[if lt IE 9]>
             <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -17,77 +19,53 @@
         <![endif]-->
     </head>
     <body>
-        <hr>
 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 resources">
+                <ul class="resources-list">
+                    <li><div type="button" class="btn btn-success" disabled="disabled"><i class="fa fa-child"></i> Population</div>
+                        <div class="numbers-pop">
+                            <span id="population"></span>
+                        </div>
+                    </li>
+                    <li><div type="button" class="btn btn-success" id="collect-coin"><i class="fa fa-money"></i></span> Coin</div>
+                        <div class="numbers">
+                            <span id="coins-count" class="count">0</span> / <span id="coins-storage" class="storage">0</span><span>( <span id="coins-ps">0</span> p/s )</span>
+                        </div>
+                    <li><div type="button" class="btn btn-success" id="collect-iron"><i class="fa fa-bars"></i></span> Iron</div>
+                        <div class="numbers">
+                            <span id="iron-count" class="count">0</span> / <span id="iron-storage" class="storage">0</span><span>( <span id="iron-ps">0</span> p/s )</span>
+                        </div>
+                    <li><div type="button" class="btn btn-success" id="collect-wood"><i class="fa fa-tree"></i></span> Wood</div>
+                        <div class="numbers">
+                            <span id="wood-count" class="count">0</span> / <span id="wood-storage" class="storage">0</span><span>( <span id="wood-ps">0</span> p/s )</span>
+                        </div>
+                    </li>
+                    <li><div type="button" class="btn btn-success" id="collect-stone"><i class="fa fa-cubes"></i></span> Stone</div>
+                        <div class="numbers">
+                            <span id="stone-count" class="count">0</span> / <span id="stone-storage" class="storage">0</span><span>( <span id="stone-ps">0</span> p/s )</span>
+                        </div>
+                    </li>
+                    <li><div type="button" class="btn btn-success" id="collect-food"><span class="glyphicon glyphicon-apple"></span> Food</div>
+                        <div class="numbers">
+                            <span id="food-count" class="count">0</span> / <span id="food-storage" class="storage">0</span><span>( <span id="food-ps">0</span> p/s )</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
         <div class="container">
-            <h1>Incremental XYZ</h1>
             <!-- First row -->
             <div class="row">
-                <div class="col-md-6">
-                    <table class="table table-hover table-condensed table-bordered">
-                        <thead>
-                            <h3>Resources:</h3>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="col-md-1"><div class="btn btn-success btn-sm" id="collect-coin"><span class="glyphicon glyphicon-usd"></span> Coin</div></td>
-                            <td class="col-md-3">Coins:</td>
-                            <td class="col-md-4"><span id="coins-count">0</span> / <span id="coins-storage">0</span></td>
-                            <td class="col-md-3">( <span id="coins-ps">0</span> p/s )</td>
-                        </tr>
-                        <tr>
-                            <td><div class="btn btn-success btn-sm" id="collect-wood"><span class="glyphicon glyphicon-tree-deciduous"></span> Wood</div></td>
-                            <td>Wood: </td>
-                            <td><span id="wood-count">0</span> / <span id="wood-storage">0</span></td>
-                            <td>( <span id="wood-ps">0</span> p/s )</td>
-                        </tr>
-                        <tr>
-                            <td><div class="btn btn-success btn-sm" id="collect-stone"><span class="glyphicon glyphicon-globe"></span> Stone</div></td>
-                            <td>Stone: </td>
-                            <td><span id="stone-count">0</span> / <span id="stone-storage">0</span></td>
-                            <td>( <span id="stone-ps">0</span> p/s )</td>
-                        </tr>
-                        <tr>
-                            <td><div class="btn btn-success btn-sm" id="collect-iron"><span class="glyphicon glyphicon-wrench"></span> Iron</div></td>
-                            <td>Iron: </td>
-                            <td><span id="iron-count">0</span> / <span id="iron-storage">0</span></td>
-                            <td>( <span id="iron-ps">0</span> p/s )</td>
-                        </tr>
-                        <tr>
-                            <td><div class="btn btn-success btn-sm" id="collect-food"><span class="glyphicon glyphicon-apple"></span> Food</div></td>
-                            <td>Food: </td>
-                            <td><span id="food-count">0</span> / <span id="food-storage">0</span></td>
-                            <td>( <span id="food-ps">0</span> p/s )</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-6">
-                    <table class="table table-hover table-condensed table-bordered">
-                        <thead>
-                            <h3>Stats:</h3>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Population:</td>
-                                <td><span id="population"></span></td>
-                            </tr>
-                            <tr>
-                                <td>Total time spent:</td>
-                                <td><span id="timespent"></span></td>
-                            </tr>
-                            <tr id='auto-save-row'>
-                                <td><div class="btn btn-success btn-sm" id="save-game"><span class="glyphicon glyphicon-floppy-disk"></span> Save</div> </td>
-                                <td>Auto save in: <span id="auto-save-timer"></span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="col-md-12 title">
+                    <h1>Incremental XYZ</h1>
                 </div>
             </div>
-            <!-- Second row -->
             <div class="row">
                 <div class="col-md-6">
-                    <table class="table table-hover table-condensed table-bordered" id="entity-table">
+                    <table class="table table-condensed no-border" id="entity-table">
                         <thead>
                             <h3>People:</h3>
                         </thead>
@@ -101,26 +79,9 @@
                         </tbody>
                     </table>
                 </div>
+
                 <div class="col-md-6">
-                    <table class="table table-hover table-condensed table-bordered" id="structures-table">
-                        <thead>
-                            <h3>Structures:</h3>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th></th>
-                            <th>Building:</th>
-                            <th>Price:</th>
-                            <th>Count:</th>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!--Third Row-->
-            <div class="row">
-                <div class="col-md-6">
-                    <table class="table table-hover table-condensed table-bordered" id="science-table">
+                    <table class="table table-condensed no-border" id="science-table">
                         <thead>
                         <h3>Science:</h3>
                         </thead>
@@ -135,6 +96,25 @@
                     </table>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6 structures">
+                    <table class="table table-condensed no-border" id="structures-table">
+                        <thead>
+                            <h3>Structures:</h3>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Building:</th>
+                            <th>Price:</th>
+                            <th>Count:</th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
         </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="js/vendor/jquery-1.11.2.min.js"></script>
