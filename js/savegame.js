@@ -5,7 +5,11 @@ var saveProgress = function() {
 var loadProgress = function() {
     var loaded = JSON.parse(window.localStorage.getItem('savegame')); //get Game obj from cookies
     if(loaded != null){
-        $.extend(true,Game,loaded); //Deep-merge savegame into Game objs
+        if(loaded.version != Game.version){
+            resetProgress();
+        } else {
+            $.extend(true,Game,loaded); //Deep-merge savegame into Game objs
+        }
     }
 }
 

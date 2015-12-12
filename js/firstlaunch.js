@@ -1,11 +1,19 @@
 function entityHandler(ent){ //callback
     return function (){
         Game.hire(ent);
+        Game.updateScreen();
     }
 }
 function structureHandler(struc){ //callback
     return function (){
         Game.build(struc);
+        Game.updateScreen();
+    }
+}
+function scienceHandler(sci){ //callback
+    return function (){
+        Game.research(sci);
+        Game.updateScreen();
     }
 }
 
@@ -37,6 +45,21 @@ function firstLaunch(){
                 '</tr>'
             );
             $('#' + struc.id + '-build').on('click', structureHandler(struc));
+        }
+    }
+
+    for(var s in Game.science){      //draw rows for alll structures
+        var sci = Game.science[s];
+        if(sci.hasOwnProperty('id')){
+            $('#science-table tr:last').after(
+                '<tr id="' + sci.id + '-row">' +
+                '   <td class="col-md-1"><div class="btn btn-primary btn-sm" id="' + sci.id + '-research"><span class="glyphicon glyphicon-book"> Research</span></div></td>'+
+                '   <td class="col-md-3"><span id="' + sci.id + '-name"></span></td>'+
+                '   <td class="col-md-6"><span id="' + sci.id + '-desc"></span></td>'+
+                '   <td class="col-md-1"><span id="' + sci.id + '-time"></span></td>'+
+                '</tr>'
+            );
+            $('#' + sci.id + '-research').on('click', scienceHandler(sci));
         }
     }
 }

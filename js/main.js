@@ -7,12 +7,19 @@ function rosebud(){ //cheatz
 }
 
 var Game = {
+    version: '0.1',
     secondsSpent: 0, //total time spent in game
+    autoSave: 10,
     magic: 1.15,    //constant incement value
+    timeToResearch: 0,
+    researching: null,
 
     resources: resources,
     entities: entities,
     structures: structures,
+    science: science,
+
+
 
     showSeconds: function() { //format seconds to HH:MM:SS and show it
         var hours   = Math.floor(this.secondsSpent / 3600);
@@ -29,6 +36,7 @@ var Game = {
         resources.show();
         entities.show();
         structures.show();
+        science.show();
         this.showSeconds();
     },
 
@@ -55,6 +63,17 @@ var Game = {
                     return; //and go away
             }
         }
+        if(this.researching != null){
+            this.researching.time--;
+            if(this.researching.time < 0){
+                this.researching.researched = true;
+                this.researching = null;
+                this.updateScreen();
+            }
+        }
+
+
+
         this.secondsSpent++; //second passed
     },
 
@@ -65,7 +84,7 @@ var Game = {
                 this.resources.iron.count >= entity.price.iron &&
                 this.resources.food.count >= entity.price.food &&
                 this.structures.capacity() > this.entities.population() &&
-                entity.requires());
+                (entity.hasOwnProperty('requires') ? entity.requires() : true));
     },
 
     hire: function(entity){ //hire worker
@@ -97,6 +116,15 @@ var Game = {
             this.updateScreen();
         }
     },
+    canResearch: function(science){
+        return(this.researching == null &&
+        (science.hasOwnProperty('requires') ? science.requires() : true));
+    },
+    research: function(science){
+        if(this.canResearch(science)){
+            this.researching = science;
+        }
+    }
 }
 
 loadProgress();//after game initialised, try to load the progress
@@ -121,10 +149,17 @@ $('#collect-food').on('click', function () {
 // The Main Loop!
 // Occurs every 1000ms (1sec), calls Game.tick(), .updateGame() and .updateScreen()
 //I see no practical reason changing it
+var untilAutosave = Game.autoSave;
 window.setInterval(function () {
     Game.updateGame();
     Game.tick();
 
-
+    $('#auto-save-timer').text(untilAutosave);
+    untilAutosave--;
+    if(untilAutosave < 0){
+        saveProgress();
+        untilAutosave = Game.autoSave;
+        $('#auto-save-row').css('background-color', '#69FF6E').animate({backgroundColor: "#FFFFFF"}, 500);
+    }
     Game.updateScreen();
 }, 1000);

@@ -6,8 +6,9 @@ function showEntity(entity) { //Updates entity UI
     $('#' + entity.id + '-name').text(entity.name);
     $('#' + entity.id + '-price').text(priceToString(entity.price));
     $('#' + entity.id + '-count').text(entity.count);
-    entity.requires() ? $('#' + entity.id + '-row').show() : $('#' + entity.id + '-row').hide();
-
+    if(entity.hasOwnProperty('requires')) {
+        entity.requires() ? $('#' + entity.id + '-row').show() : $('#' + entity.id + '-row').hide();
+    }
 }
 
 function priceToString(price) { //Formats priceobject to string
@@ -48,8 +49,8 @@ var Beggar = {
         food: 10,
     },
     count: 0,
-    requires: function() {      //returns true if is available. define advanced logic (like building or research requrement)
-        return true;
+    requires: function () {
+        return Game.science.economics.researched;
     }
 };
 
@@ -71,14 +72,14 @@ var Lumberjack = {
         food: 10,
     },
     count: 0,
-    requires: function() {
-        return true;
+    requires: function () {
+        return Game.science.forestry.researched;
     }
 };
 
-var Stonepicker = {
-    name: 'Stonepicker',
-    id: 'stonepicker',
+var Miner = {
+    name: 'Miner',
+    id: 'miner',
     boost: {
         coins: 0,
         wood: 0,
@@ -94,8 +95,8 @@ var Stonepicker = {
         food: 10,
     },
     count: 0,
-    requires: function() {
-        return true;
+    requires: function () {
+        return Game.science.mining.researched;
     }
 };
 
@@ -117,8 +118,8 @@ var Fieldworker = {
         food: 20,
     },
     count: 0,
-    requires: function() {
-        return true;
+    requires: function () {
+        return Game.science.fieldworks.researched;
     }
 };
 
@@ -148,7 +149,7 @@ var Monk = {
 var entities = {        //Keeps track of all available entities
     beggar: Beggar,
     lumberjack: Lumberjack,
-    stonepicker: Stonepicker,
+    miner: Miner,
     monk: Monk,
     fieldworker: Fieldworker,
 
