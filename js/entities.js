@@ -9,6 +9,9 @@ function showEntity(entity) { //Updates entity UI
     if(entity.hasOwnProperty('requires')) {
         entity.requires() ? $('#' + entity.id + '-row').show() : $('#' + entity.id + '-row').hide();
     }
+    if(entity.id == 'miner' && Game.science.mining.researched){
+        entity.upgrade();
+    }
 }
 
 function priceToString(price) { //Formats priceobject to string
@@ -31,29 +34,6 @@ function boostToString(boost) { //Formats boostobject to string
 
 
 //Defining entity objects:
-var Beggar = {
-    name: 'Beggar',            //Used to display object
-    id: 'beggar',              //jQuery selectors are wired on this id.
-    boost: {                   //Boost is persecond auto resource gain
-        coins: 1,
-        wood: 0,
-        stone: 0,
-        iron: 0,
-        food: -0.5,
-    },
-    price: {                   //Should have been called PRICE, but whatever
-        coins: 10,              // ^^ FIXED
-        wood: 0,
-        stone: 0,
-        iron: 0,
-        food: 10,
-    },
-    count: 0,
-    requires: function () {
-        return Game.science.economics.researched;
-    }
-};
-
 var Lumberjack = {
     name: 'Lumberjack',
     id: 'lumberjack',
@@ -67,13 +47,13 @@ var Lumberjack = {
     price: {
         coins: 10,
         wood: 0,
-        stone: 0,
+        stone: 5,
         iron: 0,
         food: 10,
     },
     count: 0,
     requires: function () {
-        return Game.science.forestry.researched;
+        return Game.science.stoneworks.researched;
     }
 };
 
@@ -90,25 +70,50 @@ var Miner = {
     price: {
         coins: 10,
         wood: 0,
-        stone: 0,
+        stone: 5,
         iron: 0,
         food: 10,
     },
     count: 0,
     requires: function () {
-        return Game.science.mining.researched;
+        return Game.science.stoneworks.researched;
+    },
+    upgrade: function () {
+        this.boost.iron = 0.5;
     }
 };
-
-var Fieldworker = {
-    name: 'Fieldworker',
-    id: 'fieldworker',
+var Hunter = {
+    name: 'Hunter',
+    id: 'hunter',
     boost: {
         coins: 0,
         wood: 0,
-        stone: 0,
+        stone: 0.5,
         iron: 0,
         food: 2,
+    },
+    price: {
+        coins: 10,
+        wood: 0,
+        stone: 5,
+        iron: 0,
+        food: 10,
+    },
+    count: 0,
+    requires: function () {
+        return Game.science.stoneworks.researched;
+    }
+};
+
+var Labourer = {
+    name: 'Labourer',
+    id: 'labourer',
+    boost: {
+        coins: 1,
+        wood: 0,
+        stone: 0,
+        iron: 0,
+        food: 1,
     },
     price: {
         coins: 10,
@@ -119,39 +124,40 @@ var Fieldworker = {
     },
     count: 0,
     requires: function () {
-        return Game.science.fieldworks.researched;
+        return true;
     }
 };
-
-var Monk = {
-    name: 'Monk',
-    id: 'monk',
+var Blacksmith = {
+    name: 'Blacksmith',
+    id: 'blacksmith',
     boost: {
-        coins: 100,
-        wood: 100,
-        stone: 100,
-        iron: 100,
-        food: 100,
+        coins: 0,
+        wood: 0,
+        stone: 0,
+        iron: 0,
+        food: -1,
     },
     price: {
-        coins: 1000,
-        wood: 100,
-        stone: 50,
-        iron: 100,
-        food: 1000,
+        coins: 10,
+        wood: 0,
+        stone: 0,
+        iron: 0,
+        food: 20,
     },
     count: 0,
-    requires: function() {
-        return Game.structures.church.count != 0;
+    requires: function () {
+        return (Game.structures.forge.count != 0 &&
+                this.count == 0);
     }
 };
 
+
 var entities = {        //Keeps track of all available entities
-    beggar: Beggar,
-    lumberjack: Lumberjack,
+    labourer: Labourer,
+    hunter: Hunter,
     miner: Miner,
-    monk: Monk,
-    fieldworker: Fieldworker,
+    lumberjack: Lumberjack,
+    blacksmith: Blacksmith,
 
     population: function() { //returns total count of entities
         var population = 0;

@@ -12,8 +12,8 @@ var Tent = {
     id: 'tent',
     capacity: 2,
     price: {
-        coins: 100,
-        wood: 50,
+        coins: 20,
+        wood: 20,
         stone: 10,
         iron: 0,
         food: 0,
@@ -41,19 +41,44 @@ var Stockpile = {
     count: 0,
 };
 
-var Church = {
-    name: 'Church',
-    id: 'church',
+var House = {
+    name: 'House',
+    id: 'house',
+    capacity: 5,
     price: {
-        coins: 1000,
-        wood: 500,
-        stone: 500,
-        iron: 500,
-        food: 100,
+        coins: 50,
+        wood: 50,
+        stone: 20,
+        iron: 0,
+        food: 0,
+    },
+    storage: {
+        coins: 50,
+        wood: 50,
+        stone: 50,
+        iron: 50,
+        food: 50,
     },
     count: 0,
     requires: function(){
-        return Game.structures.stockpile.count >= 4;
+        return Game.science.fire.researched;
+    }
+};
+
+var Forge = {
+    name: 'Forge',
+    id: 'forge',
+    price: {
+        coins: 50,
+        wood: 50,
+        stone: 100,
+        iron: 50,
+        food: 0,
+    },
+    count: 0,
+    requires: function(){
+        return (Game.science.smelting.researched &&
+                Game.structures.forge.count == 0);
     }
 };
 
@@ -61,8 +86,9 @@ var Church = {
 
 var structures = {
     tent: Tent,
-    church: Church,
     stockpile: Stockpile,
+    house: House,
+    forge: Forge,
 
     show: function(){
         for(var s in this){

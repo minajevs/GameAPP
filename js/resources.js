@@ -2,46 +2,62 @@
 //
 //Common functions for every resource:
 function collectResource(res){
-    if((Game.structures.storage()[res.name]-res.count) >= res.perClick){ //Collect resource only if storage is available
+    if((Game.structures.storage()[res.id]-res.count) >= res.perClick){ //Collect resource only if storage is available
         res.count += res.perClick;
         Game.updateScreen();
     }
 }
 function showResource(res){ //Updates resource UI. Each resource have 2 DOMs - count and persecond
-    $('#' + res.name + '-count').text(res.count); //Resource count may float, carefully!
-    $('#' + res.name + '-ps').text(res.perSecond);
+    $('#' + res.id + '-count').text(res.count); //Resource count may float, carefully!
+    $('#' + res.id + '-ps').text(res.perSecond);
+    if(res.hasOwnProperty('requires')) {
+        res.requires() ? $('#' + res.id + '-row').show() : $('#' + res.id + '-row').hide();
+    }
 }
 
 //Defining resources:
 var coins = {
-    name: 'coins',  //for jQuery selector
+    id: 'coins',
+    name: 'Coins',  //for jQuery selector
+    ico: '',
     count: 0,
     perSecond: 0,
     perClick: 1,
 }
 var wood = {
-    name: 'wood',
+    id: 'wood',
+    name: 'Wood',
+    ico: '',
     count: 0,
     perSecond: 0,
     perClick: 1,
 }
 var stone = {
-    name: 'stone',
-    count: 0,
-    perSecond: 0,
-    perClick: 1,
-}
-var iron = {
-    name: 'iron',
+    id: 'stone',
+    name: 'Stone',
+    ico: '',
     count: 0,
     perSecond: 0,
     perClick: 1,
 }
 var food = {
-    name: 'food',
+    id: 'food',
+    name: 'Food',
+    ico: '',
     count: 0,
     perSecond: 0,
     perClick: 1,
+}
+var iron = {
+    id: 'iron',
+    name: 'Iron',
+    ico: '',
+    count: 0,
+    perSecond: 0,
+    perClick: 1,
+    requires: function () {
+        return true;
+    },
 }
 
 var resources = {   //resources object

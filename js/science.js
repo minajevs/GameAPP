@@ -12,52 +12,67 @@ function showScience(science){
     }
 }
 
-var Fieldworks = {
-    name: 'Fieldworks',
-    id: 'fieldworks',
-    desc: 'People get smarter and learn how to use basic tools to collect the food. Opens fieldworkers.',
-    time: 3,
-    researched: false,
-};
-
-var Forestry = {
-    name: 'Forestry',
-    id: 'forestry',
-    desc: 'Citizens invents axes. Opens Woodcutters',
-    time: 3,
+var Stoneworks = {
+    name: 'Stone works',
+    id: 'stoneworks',
+    desc: 'People get smarter and learn how to make stone tool. Opens new workers.',
+    time: 1,
     researched: false,
     requires: function () {
-        return Game.science.fieldworks.researched;
+        return true;
+    }
+};
+var Fire = {
+    name: 'Fire',
+    id: 'fire',
+    desc: 'People get smarter and learn how to get fire.',
+    time: 1,
+    researched: false,
+    requires: function () {
+        return Game.science.stoneworks.researched;
+    }
+};
+var Woodworks = {
+    name: 'Wood works',
+    id: 'woodworks',
+    desc: 'People get smarter and learn how to make wooden tools and structures.',
+    time: 1,
+    researched: false,
+    requires: function () {
+        return Game.science.stoneworks.researched;
     }
 };
 var Mining = {
     name: 'Mining',
     id: 'mining',
-    desc: 'Citizens invents pickaxes. Opens Miners',
-    time: 3,
+    desc: 'People get smarter and learn how to mine ore.',
+    time: 1,
     researched: false,
     requires: function () {
-        return Game.science.fieldworks.researched;
+        return Game.science.woodworks.researched;
     }
 };
-var Economics = {
-    name: 'Economics',
-    id: 'economics',
-    desc: 'People start to understand how do money work. Opens Beggars.',
-    time: 3,
+var Smelting = {
+    name: 'Smelting',
+    id: 'smelting',
+    desc: 'Miners get smarter and learn how to smelt ore.',
+    time: 1,
     researched: false,
     requires: function () {
-        return Game.science.fieldworks.researched;
+        return (Game.science.fire.researched &&
+                Game.science.mining.researched);
     }
 };
+
 
 
 
 var science = {
-    fieldworks: Fieldworks,
-    forestry: Forestry,
+    stoneworks: Stoneworks,
+    fire: Fire,
+    woodworks: Woodworks,
     mining: Mining,
-    economics: Economics,
+    smelting: Smelting,
 
     canResearch: function(){
         if(currentResearch.hasOwnProperty('id') && currentResearch['time'] <= 0){
