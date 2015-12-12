@@ -71,7 +71,7 @@ var Game = {
             if(this.researching.time < 0){
                 this.researching.researched = true;
                     if (typeof Windows !== 'undefined') {
-                        showToast(this.researching.name);
+                        showToast(this.researching.name, 5);
                     }
                 this.researching = null;
                 this.updateScreen();
