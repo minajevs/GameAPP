@@ -15,6 +15,11 @@ function scienceHandler(sci){ //callback
         Game.research(sci);
         Game.updateScreen();
     }
+}function resourceHandler(res){ //callback
+    return function (){
+        collectResource(res);
+        Game.updateScreen();
+    }
 }
 
 function firstLaunch(){
@@ -60,6 +65,19 @@ function firstLaunch(){
                 '</tr>'
             );
             $('#' + sci.id + '-research').on('click', scienceHandler(sci));
+        }
+    }
+    for(var r in Game.resources){      //draw rows for alll res
+        var r = Game.resources[r];
+        if(r.hasOwnProperty('id')){
+            $('#resources-table tr:last').after(
+                '<tr id="' + r.id + '-row">' +
+                '   <td class="col-md-3"><div class="btn btn-success btn-sm" id="collect-' + r.id + '"><span class="glyphicon glyphicon-book"> '+ r.name +'</span></div></td>'+
+                '   <td class="col-md-4"><span id="' + r.id + '-count">0</span> / <span id="'+ r.id +'-storage">0</span></td>'+
+                '   <td class="col-md-3"><span id="' + r.id + '-ps"></span></td>'+
+                '</tr>'
+            );
+            $('#collect-' + r.id).on('click', resourceHandler(r));
         }
     }
 }

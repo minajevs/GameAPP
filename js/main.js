@@ -56,12 +56,15 @@ var Game = {
             }
         }
         if(this.resources.food.count < 0){ //if no food
-            for(var ent in this.entities){  //from all the people
-                if(this.entities[ent].hasOwnProperty('id'))
-                    this.entities[ent].count--; //kill first
-                    this.resources.food.count = 0; //set the food to 0
-                    return; //and go away
+            if(Game.entities.population() > 0){
+                for(var ent in this.entities){  //from all the people
+                    if(this.entities[ent].count > 0) {
+                        this.entities[ent].count--; //kill first
+                        return; //and go away
+                    }
+                }
             }
+            this.resources.food.count = 0;//set the food to 0
         }
         if(this.researching != null){
             this.researching.time--;
@@ -71,9 +74,6 @@ var Game = {
                 this.updateScreen();
             }
         }
-
-
-
         this.secondsSpent++; //second passed
     },
 
@@ -92,7 +92,7 @@ var Game = {
             this.resources.pay(entity.price); //pay for it
             entity.count++; //add worker
             for(var p in entity.price) //increment price
-                entity.price[p] = Math.floor(entity.price[p]*this.magic);
+                entity.price[p] = Math.ceil(entity.price[p]*this.magic);
             this.updateGame();
             this.updateScreen();
         }
@@ -111,7 +111,7 @@ var Game = {
             this.resources.pay(structure.price);
             structure.count++;
             for(var p in structure.price)
-                structure.price[p] = Math.floor(structure.price[p]*this.magic);
+                structure.price[p] = Math.ceil(structure.price[p]*this.magic);
             this.updateGame();
             this.updateScreen();
         }
