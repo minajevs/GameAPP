@@ -70,6 +70,9 @@ var Game = {
             this.researching.time--;
             if(this.researching.time < 0){
                 this.researching.researched = true;
+                    if (typeof Windows !== 'undefined') {
+                        showToast(this.researching.name);
+                    }
                 this.researching = null;
                 this.updateScreen();
             }
